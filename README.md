@@ -151,4 +151,4 @@ node tests/pokemon.test.mjs && node tests/info.test.mjs
 - Artes e dados dos Pokémon: [PokeAPI](https://pokeapi.co) e [PokeAPI/sprites](https://github.com/PokeAPI/sprites)
 - Inspirado no *AI Squat Coach*, que usa MediaPipe para acompanhar exercícios
 
-<sub>Pokémon é marca registrada da Nintendo / Game Freak / The Pokémon Company. Projeto feito apenas para diversão e estudo.</sub>
+<sub>Pokémon é marca registrada da Nintendo / Game Freak / The Pokémon Company. Projeto feito para estudo.</sub>
