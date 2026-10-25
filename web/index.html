@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokémon Face Scan</title>
+  <link rel="icon" href="img/pokeball.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <img src="img/pokeball.svg" alt="" class="logo">
+    <h1>Qual Pokémon é você?</h1>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="stage">
+        <video id="video" autoplay muted playsinline></video>
+        <canvas id="canvas"></canvas>
+        <div class="progress" id="progress"></div>
+        <div class="cue" id="cue">Carregando IA…</div>
+      </div>
+
+      <div class="panel">
+        <h3>Leitura facial ao vivo</h3>
+        <div id="metrics"></div>
+        <button id="scan" disabled>
+          <img src="img/pokeball.svg" alt="" class="btn-ball"> Escanear meu rosto
+        </button>
+        <div id="result"></div>
+      </div>
+    </div>
+
+    <section class="dex">
+      <h2><img src="img/pokeball.svg" alt="" class="dex-ball"> Pokédex</h2>
+      <p class="dex-sub">Os 151 Pokémon da primeira geração — qualquer um deles pode ser você.</p>
+      <ul id="dex"></ul>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
