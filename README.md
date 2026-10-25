@@ -33,7 +33,7 @@
 
 ## ✨ O que ele faz
 
-| | |
+| Recurso | Como funciona |
 |---|---|
 | 🧠 **Reconhecimento facial ao vivo** | O MediaPipe encontra **478 pontos** no seu rosto e desenha a malha em tempo real. |
 | 📊 **Leitura dos traços** | Sorriso, olhos, sobrancelhas, boca e formato do rosto, medidos de 0 a 100%. |
