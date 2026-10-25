@@ -1,5 +1,7 @@
 import { FaceLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs';
-import { TRAITS, POKEMON, artwork, bestMatch } from './pokemon.js';
+import { TRAITS, artwork, bestMatch } from './pokemon.js';
+import { INFO, typeBadges } from './info.js';
+import { openSheet } from './dex.js';
 import './effects.js';
 
 const WASM  = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm';
@@ -16,15 +18,6 @@ $('metrics').innerHTML = TRAITS.map(([k, label]) => `
     <label>${label}<span id="v-${k}">–</span></label>
     <div class="bar"><i id="b-${k}"></i></div>
   </div>`).join('');
-
-// Pokédex: lista de todos os Pokémon possíveis, em ordem de número
-$('dex').innerHTML = [...POKEMON].sort((a, b) => a[0] - b[0]).map(([id, name, , why]) => `
-  <li id="dex-${id}" style="--i:${id}">
-    <img src="${artwork(id)}" alt="${name}" loading="lazy">
-    <span class="num">#${String(id).padStart(3, '0')}</span>
-    <strong>${name}</strong>
-    <small>${why}</small>
-  </li>`).join('');
 
 const clamp = v => Math.max(0, Math.min(1, v));
 
@@ -146,12 +139,16 @@ function finish() {
     <img src="${artwork(id)}" alt="${name}">
     <p class="result-label">Você seria…</p>
     <h2>${name}</h2>
+    <div class="types">${typeBadges(id)}</div>
     <p>Compatibilidade: <b>${match}%</b></p>
-    <p>Seu rosto tem ${why}.</p>`;
+    <p>Seu rosto tem ${why}.</p>
+    <p class="personality">Personalidade: ${INFO[id][1]}.</p>
+    <button class="more" type="button">Ver ficha completa</button>`;
+  result.querySelector('.more').onclick = () => openSheet(id);
   result.style.display = 'block';
   document.querySelector('#dex .match')?.classList.remove('match');
   $('dex-' + id).classList.add('match');
-  say(`Scan completo! Você seria um ${name}. Seu rosto tem ${why}.`);
+  say(`Scan completo! Você seria um ${name}. Seu rosto tem ${why}. Personalidade: ${INFO[id][1]}.`);
 }
 
 init();

@@ -103,13 +103,6 @@ header {
 .led.green  { background: radial-gradient(circle at 35% 35%, #c3ffcf, #20b24a); }
 @keyframes blink { 50% { filter: brightness(.5); } }
 
-.brand {
-  font-family: var(--pixel);
-  font-size: .8rem;
-  letter-spacing: .2em;
-  text-shadow: 2px 2px 0 var(--black);
-}
-
 .logo {
   width: 54px;
   height: 54px;
@@ -559,6 +552,112 @@ button:hover:not(:disabled) .btn-ball { animation: wobble 1s ease-in-out; }
   transform: rotate(12deg);
   z-index: 2;
   animation: pulse .6s ease-in-out infinite alternate;
+}
+
+/* =========================================================
+   Tipos, personalidade e ficha do Pokémon
+   ========================================================= */
+.types { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin-top: 6px; }
+.type {
+  padding: 2px 10px;
+  font-size: .72rem;
+  font-weight: 900;
+  color: var(--white);
+  text-shadow: 1px 1px 0 #0006;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--type) 70%, white), var(--type));
+  border: 2px solid var(--black);
+  border-radius: 999px;
+}
+
+#dex li { cursor: pointer; }
+#dex li:focus-visible { outline: 4px solid var(--blue-glow); outline-offset: 4px; }
+
+#result .types { margin: 2px 0 6px; }
+#result .personality { font-style: italic; opacity: .95; }
+#result .more {
+  margin: 10px auto 0;
+  padding: 8px 18px;
+  font-size: .9rem;
+  color: var(--black);
+  background: linear-gradient(180deg, var(--white), #dfe7f2);
+  box-shadow: 0 4px 0 var(--black);
+}
+
+.sheet {
+  --main: var(--blue);
+  width: min(440px, calc(100% - 32px));
+  max-height: calc(100vh - 40px);
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  color: var(--ink);
+  border: 5px solid var(--black);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--main) 80%, white), var(--main) 200px, var(--black) 200px 206px, var(--white) 206px, var(--blue-light));
+  box-shadow: 0 10px 0 var(--black), 0 30px 60px #0008;
+}
+.sheet[open] { animation: reveal .45s cubic-bezier(.2, 1.5, .4, 1); }
+.sheet::backdrop { background: #0a0c10cc; backdrop-filter: blur(4px); }
+.sheet-body {
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+  padding: 24px 22px 22px;
+  text-align: center;
+}
+.sheet-img {
+  width: 190px;
+  height: 190px;
+  margin: -10px auto 0;
+  display: block;
+  filter: drop-shadow(0 16px 14px #0007);
+  animation: float 3s ease-in-out infinite, pop .6s cubic-bezier(.2, 1.6, .4, 1);
+}
+.sheet .num {
+  display: inline-block;
+  padding: 3px 8px;
+  font-family: var(--pixel);
+  font-size: .55rem;
+  color: var(--white);
+  background: var(--blue);
+  border: 2px solid var(--black);
+  border-radius: 999px;
+}
+.sheet h2 { margin: 8px 0 2px; font-family: var(--pixel); font-size: 1.1rem; }
+.sheet h3 { margin: 18px 0 8px; font-family: var(--pixel); font-size: .6rem; color: var(--blue); text-align: left; }
+.sheet dl { margin: 14px 0 0; text-align: left; }
+.sheet dt { font-family: var(--pixel); font-size: .55rem; color: var(--blue); margin-top: 10px; }
+.sheet dd { margin: 4px 0 0; font-weight: 700; }
+.sheet .metric { text-align: left; margin-bottom: 8px; }
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+  font-weight: 700;
+}
+.stats > div {
+  padding: 8px;
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-radius: 10px;
+}
+.stats .wide { text-transform: capitalize; }
+.stats b { display: block; font-size: .7rem; color: var(--gray); text-transform: none; }
+.stats .wide, .stats > span { grid-column: 1 / -1; color: var(--gray); }
+.sheet-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+  color: var(--black);
+  background: var(--white);
+  box-shadow: 0 3px 0 var(--black);
 }
 
 footer {

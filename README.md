@@ -16,7 +16,7 @@ Inspirado em projetos de visão computacional com MediaPipe (como o *AI Squat Co
    | Boca aberta | `jawOpen` |
    | Rosto arredondado | largura ÷ altura do rosto (pontos 234–454 e 10–152) |
 3. **Scan** — ao clicar em *Escanear*, os traços são medidos por 3 segundos e tirada a média.
-4. **Pokédex** — abaixo da câmera há a lista dos **151 Pokémon da 1ª geração**; o seu resultado fica destacado.
+4. **Pokédex** — abaixo da câmera há a lista dos **151 Pokémon da 1ª geração**, com tipos e personalidade; o seu resultado fica destacado. Clique num card para abrir a **ficha completa**: tipos, personalidade, rosto típico, perfil facial e altura, peso e habilidades (buscados ao vivo na [PokeAPI](https://pokeapi.co)).
 5. **Resultado** — cada um dos 151 Pokémon tem um perfil com os mesmos 5 traços; vence o mais próximo do seu rosto (distância euclidiana). A tela mostra a arte oficial, a compatibilidade e o resultado é falado em português.
 
 Tudo roda **no seu computador**: nenhuma imagem da câmera é enviada para servidor algum.
@@ -36,13 +36,16 @@ PokemonFacialDetect/
     │   └── pokeball.svg # Pokébola (logo, botão e ícone da aba)
     └── js/
         ├── app.js       # câmera, detecção facial, painel e scan
+        ├── dex.js       # Pokédex: cards e ficha de cada Pokémon
         ├── effects.js   # paralaxe e inclinação 3D que seguem o mouse
+        ├── info.js      # tipos e personalidade dos 151 Pokémon
         └── pokemon.js   # traços, perfis dos 151 Pokémon e cálculo do resultado
 tests/
+├── info.test.mjs        # confere tipos e personalidade dos 151
 └── pokemon.test.mjs     # confere a lista e que todo Pokémon pode ser resultado
 ```
 
-Teste: `node tests/pokemon.test.mjs`
+Testes: `node tests/pokemon.test.mjs && node tests/info.test.mjs`
 
 ## Como rodar
 
