@@ -31,11 +31,12 @@ PokemonFacialDetect/
 └── web/
     ├── index.html       # página
     ├── css/
-    │   └── style.css    # visual (branco, preto, vermelho e azul)
+    │   └── style.css    # visual Pokédex: degradês, cortes diagonais, 3D e animações
     ├── img/
     │   └── pokeball.svg # Pokébola (logo, botão e ícone da aba)
     └── js/
         ├── app.js       # câmera, detecção facial, painel e scan
+        ├── effects.js   # paralaxe e inclinação 3D que seguem o mouse
         └── pokemon.js   # traços, perfis dos 151 Pokémon e cálculo do resultado
 tests/
 └── pokemon.test.mjs     # confere a lista e que todo Pokémon pode ser resultado

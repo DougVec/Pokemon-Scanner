@@ -1,5 +1,6 @@
 import { FaceLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs';
 import { TRAITS, POKEMON, artwork, bestMatch } from './pokemon.js';
+import './effects.js';
 
 const WASM  = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm';
 const MODEL = 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task';
@@ -18,7 +19,7 @@ $('metrics').innerHTML = TRAITS.map(([k, label]) => `
 
 // Pokédex: lista de todos os Pokémon possíveis, em ordem de número
 $('dex').innerHTML = [...POKEMON].sort((a, b) => a[0] - b[0]).map(([id, name, , why]) => `
-  <li id="dex-${id}">
+  <li id="dex-${id}" style="--i:${id}">
     <img src="${artwork(id)}" alt="${name}" loading="lazy">
     <span class="num">#${String(id).padStart(3, '0')}</span>
     <strong>${name}</strong>
@@ -123,6 +124,7 @@ btn.onclick = () => {
   result.style.display = 'none';
   btn.disabled = true;
   scanning = { t0: performance.now(), n: 0, sum: Object.fromEntries(TRAITS.map(([k]) => [k, 0])) };
+  $('stage').classList.add('scanning');
   say('Escaneando. Fique parado e faça sua cara natural.');
 };
 
@@ -132,6 +134,7 @@ function finish() {
   btn.disabled = false;
   btn.textContent = 'Escanear de novo';
   progress.style.width = '0';
+  $('stage').classList.remove('scanning');
 
   if (n < 10) {
     say('Não consegui ver seu rosto direito. Chegue mais perto e tente de novo.');
@@ -140,8 +143,8 @@ function finish() {
 
   const { id, name, why, match } = bestMatch(TRAITS.map(([k]) => sum[k] / n));
   result.innerHTML = `
-    <p>Você seria…</p>
     <img src="${artwork(id)}" alt="${name}">
+    <p class="result-label">Você seria…</p>
     <h2>${name}</h2>
     <p>Compatibilidade: <b>${match}%</b></p>
     <p>Seu rosto tem ${why}.</p>`;

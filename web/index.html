@@ -5,21 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pokémon Face Scan</title>
   <link rel="icon" href="img/pokeball.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <img src="img/pokeball.svg" alt="" class="logo">
-    <h1>Qual Pokémon é você?</h1>
-  </header>
 
-  <main>
-    <div class="wrap">
-      <div class="stage">
-        <video id="video" autoplay muted playsinline></video>
-        <canvas id="canvas"></canvas>
-        <div class="progress" id="progress"></div>
-        <div class="cue" id="cue">Carregando IA…</div>
+  <!-- Topo em degradê, cortado na diagonal, com Pokémon gigantes saindo da tela -->
+  <section class="hero" id="hero">
+    <header>
+      <div class="lights" aria-hidden="true">
+        <span class="lens"></span>
+        <span class="led red"></span>
+        <span class="led yellow"></span>
+        <span class="led green"></span>
+      </div>
+      <span class="brand">POKÉ SCAN</span>
+      <img src="img/pokeball.svg" alt="" class="logo">
+    </header>
+
+    <div class="hero-text">
+      <h1>Qual Pokémon<br><span>é você?</span></h1>
+      <p>Escaneie seu rosto com IA e descubra qual dos 151 Pokémon da primeira geração combina com você.</p>
+      <a href="#scanner" class="cta"><img src="img/pokeball.svg" alt=""> Começar o scan</a>
+    </div>
+
+    <div class="hero-mons" aria-hidden="true">
+      <img class="mon m1" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" alt="">
+      <img class="mon m2" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="">
+      <img class="mon m3" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" alt="">
+      <img class="mon m4" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" alt="">
+    </div>
+  </section>
+
+  <!-- Scanner: aparelho Pokédex em 3D -->
+  <section class="scanner" id="scanner">
+    <div class="device" id="device">
+      <div class="screen">
+        <div class="screen-top" aria-hidden="true"><span></span><span></span></div>
+        <div class="stage" id="stage">
+          <video id="video" autoplay muted playsinline></video>
+          <canvas id="canvas"></canvas>
+          <div class="grid" aria-hidden="true"></div>
+          <div class="sweep" aria-hidden="true"></div>
+          <div class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="progress" id="progress"></div>
+          <div class="cue" id="cue">Carregando IA…</div>
+        </div>
+        <div class="screen-bottom" aria-hidden="true">
+          <span class="power"></span>
+          <span class="speaker"><i></i><i></i><i></i><i></i></span>
+        </div>
       </div>
 
       <div class="panel">
@@ -31,13 +68,18 @@
         <div id="result"></div>
       </div>
     </div>
+  </section>
 
-    <section class="dex">
+  <!-- Pokédex em faixa diagonal, cards 3D com o Pokémon saindo do card -->
+  <section class="dex-wrap">
+    <div class="dex">
       <h2><img src="img/pokeball.svg" alt="" class="dex-ball"> Pokédex</h2>
       <p class="dex-sub">Os 151 Pokémon da primeira geração — qualquer um deles pode ser você.</p>
       <ul id="dex"></ul>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <footer>Feito com MediaPipe · Artes de PokeAPI · Pokémon © Nintendo / Game Freak</footer>
 
   <script type="module" src="js/app.js"></script>
 </body>
